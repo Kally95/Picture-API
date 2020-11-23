@@ -15,6 +15,7 @@ func check(e error) {
 }
 
 const path = "/home/santito/Desktop/PictureAPI/images/"
+const ext = ".jpeg"
 
 func writeImage(w http.ResponseWriter, r *http.Request) {
 	d, err := ioutil.ReadAll(r.Body)
@@ -28,16 +29,16 @@ func writeImage(w http.ResponseWriter, r *http.Request) {
 		w.Write(image)
 	} else {
 		w.WriteHeader(400)
-		fmt.Fprintf(w, `Sorry! We don't have the image you're looking for. Try "Cat"`)
+		fmt.Fprintf(w, `Sorry! We don't have the image you're looking for, try "Cat"`)
 	}
 }
 
 func retrievePicture(a string) []byte {
 	str := strings.Title(strings.ToLower(a))
-	if _, err := os.Stat(path + str + ".jpeg"); os.IsNotExist(err) {
+	if _, err := os.Stat(path + str + ext); os.IsNotExist(err) {
 		return nil
 	}
-	image, err := ioutil.ReadFile(path + str + ".jpeg")
+	image, err := ioutil.ReadFile(path + str + ext)
 	check(err)
 	return image
 }
