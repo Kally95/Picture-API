@@ -46,6 +46,3 @@ func main() {
 	http.HandleFunc("/", writeImage)
 	http.ListenAndServe(":3000", nil)
 }
-
-// If image isnt available, custom error errors.New("can't work with 42")
-// and a 400 (bad request) status code.
