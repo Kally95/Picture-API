@@ -25,10 +25,11 @@ func writeImage(w http.ResponseWriter, r *http.Request) {
 	image := retrievePicture(animal)
 	if image != nil {
 		w.Header().Set("Content-Type", "image/jpeg")
-		w.WriteHeader(200)
+		w.WriteHeader(http.StatusOK)
 		w.Write(image)
 	} else {
-		w.WriteHeader(400)
+		w.Header().Set("Content-Type", "text/plain")
+		w.WriteHeader(http.StatusBadRequest)
 		fmt.Fprintf(w, `Sorry! We don't have the image you're looking for, try "Cat"`)
 	}
 }
