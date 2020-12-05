@@ -6,6 +6,9 @@ import (
 	"strings"
 )
 
+const Path = "/home/santito/Desktop/PictureAPI/images/"
+const Ext = ".jpeg"
+
 // RetrievePicture obtains the specified animal from the
 // "images" folder, where we are storing pictures in memory.
 func RetrievePicture(a string) ([]byte, error) {
